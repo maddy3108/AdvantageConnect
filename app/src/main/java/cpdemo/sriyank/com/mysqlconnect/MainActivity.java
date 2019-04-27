@@ -78,19 +78,25 @@ public class MainActivity extends AppCompatActivity {
                 success = false;
             } else {
                 // Change below query according to your own database.
-                String query = "SELECT [Product name],[Product name] FROM products";
+                String query = "SELECT [First name],[First name] FROM customer where [First name] like 'S%'";
+                String query1="select \"employee id\",\n" +
+                        "'Has sales' as \"Sales status\"\n" +
+                        "from invoice\n" +
+                        "union select \"Employee Number\",'No sales' as \"Sale status\"\n" +
+                        "from employee\n" +
+                        "where \"Employee number\" not in\n" +
+                        "(select \"employee id\" from invoice)";
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
+                ResultSet rs = stmt.executeQuery(query1);
 
                 if (rs != null) // if resultset not null, I add items to itemArraylist using class created
                 {
                     while (rs.next()) {
                         try {
-                            itemArrayList.add(new ClassListItems(rs.getString("Product name"), rs.getString("Product name")));
+                            itemArrayList.add(new ClassListItems(rs.getString("employee id"), rs.getString("Sales status")));
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }
-
                     }
                     msg = "Found";
                     success = true;

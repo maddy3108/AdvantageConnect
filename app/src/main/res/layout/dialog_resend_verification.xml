@@ -29,7 +29,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/confirm_password"
         android:hint="New value"
-        android:inputType="textPassword"
+        android:text="Pintu kumar agarwalla"
+        android:inputType="text"
         android:textSize="20sp"
         android:layout_marginTop="5dp"/>
 
